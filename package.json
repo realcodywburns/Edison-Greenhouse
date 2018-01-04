@@ -1,0 +1,35 @@
+{
+  "name": "codywebsite",
+  "version": "1.0.0",
+  "description": "Personal Website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/n/A.git"
+  },
+  "author": "cody.w.burns",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/n/A/issues"
+  },
+  "homepage": "https://github.com/n/A#readme",
+  "dependencies": {
+    "body-parser": "^1.16.0",
+    "bootstrap": "^3.3.7",
+    "express": "^4.14.0",
+    "express-handlebars": "^3.0.0",
+    "font-awesome": "^4.7.0",
+    "fs": "0.0.1-security",
+    "http": "0.0.0",
+    "jquery": "^3.1.1",
+    "mongodb": "^2.2.21",
+    "node-sass-middleware": "^0.10.1",
+    "path": "^0.12.7",
+    "randomcolor": "^0.4.4",
+    "request": "^2.79.0",
+    "web3": "^0.19.0"
+  }
+}

@@ -1,0 +1,71 @@
+<div class="container-fluid vr">
+  <div class = "row">
+    <div class="col-lg-12">
+      <a-scene id="sceneMaze" physics="debug:false" fog="type: exponential; color: #151926; density: 0.2;">
+        <a-assets>
+          <img id="floor" src="./img/texture/floor.jpg">
+          <img id="ceiling" src="./img/texture/ceiling.jpg">
+          <img id="wall3" src="./img/texture/Aluminium_Scratched_Metal_Dirty_1.jpg">
+          <img id="wall1" src="./img/texture/computerWall.jpg">
+          <img id="wall2" src="./img/texture/stone_wall_white.jpg">
+
+          <!--firearms-->
+            <img id="m4" src="./img/firearms/ar15.png">
+            <img id="acog" src="./img/firearms/ACOG_Scope_ADS_CoD4.png">
+            <img id="ar15" src="./img/firearms/M4A1_ACOG_Scope_CoD4.png">
+          <!--players-->
+          <img id="body1" src="./img/firearms/ar15.png">
+          <!--sounds-->
+            <audio id="m4-sound" src="./audio/M4A1_Single-Kibblesbob-8540445.mp3" preload="auto">
+            <audio id="jump" src="./audio/MaleGrunt-68178715.mp3" preload="auto">
+            <audio id="step" src="./audio/Footsteps_on_Cement-Tim_Fryer-870410055.mp3" preload="auto">
+          <!-- Laser. -->
+            <a-mixin id="laser"   geometry="primitive: sphere; radius:.05; "
+                                  material="color: red; metalness: 0.2; opacity: 0.4; roughness: 0.3 "
+                                 projectile static-body></a-mixin>
+          <!--bad guys-->
+        </a-assets>
+
+        <!-- player -->
+        <a-entity id="player"
+          camera
+          universal-controls="movementControls: automove, gamepad, keyboard"
+          kinematic-body
+          jump-ability="soundJump: src="#jump"; soundLand: "#jump""
+          position="9 3 -5"
+          rotation="0 180 0"
+          spawner="mixin: laser; on: click"
+          click-listener
+          button-watcher
+          player-movement>
+          <a-light color="#ccc"  intensity="0.2" type="point" ></a-light>
+          <a-entity id="body" src='#body1;'></a-entity>
+           <a-entity id="firingSystem" button-watcher>
+             <a-cursor position="0 0 2" fuse="false" sound="src:#m4-sound; on:click ;poolSize:15"></a-cursor>
+         <!--weapon-->
+             <a-image src="#m4" position="0.12 0 -.5" scale="1 1 1"></a-image>
+             <a-animation id="idle" attribute="position" to="0 .01 -.01" dur="5000" ease="ease-in-out" direction="alternate" repeat="indefinite"></a-animation>
+             <a-animation id="fire" begin="mousedown gamepadbuttondown:1"  button-watcher attribute="position" to="0 .02 -.01" dur="200" ease="ease-in-out" fill="backwards" ></a-animation>
+           </a-entity>
+
+         </a-entity>
+
+        <!-- Lighting -->
+        <!--world -->
+        <a-grid id="ground" static-body src="#floor" ></a-grid>
+        <a-box id="safetyNet" color="red" static-body position="0 -.15 0" scale = "500 .1 500"></a-box>
+        <a-sky id="sky" color="#AADDF0"></a-sky>
+        <a-box id="celing" color="grey" static-body position="0 3.5 0" scale = "500 .1 500"></a-box>
+
+        <a-entity id="walls"></a-entity>
+
+
+        <!--objectives-->
+        <a-box class="enemy" dynamic-body  position="0 2 -6" height="2" width ="1" depth="1" look-at="player"></a-box>
+        <a-sphere radius=".5" position = "0 5 -5" dynamic-body></a-sphere>
+
+    </a-scene>
+  </div>
+</div>
+<script src="./js/renderTarget.js"></script>
+
